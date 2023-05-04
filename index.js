@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs')
-const generateLogo= require('./logo.svg')
+const shapes = require("./lib/shape")
+// const generateLogo= require('./logo.svg')
 
 function writeLogo(fileName, data) {
     fs.writeFile(fileName, data, (err)=> 
@@ -12,16 +13,39 @@ function init() {
     .prompt([
       {
         type: 'input',
-        message: questions[0],
-        name: 'title',
+        message: "Input the text for your logo (3 letters max).",
+        name: 'text',
+      },
+      {
+        type: 'input',
+        message: "What color would you like the text to be?",
+        name: 'text_color',
       },
       {
         type: 'list',
-        message: questions[8],
-        name: 'license',
-        choices : ["None", "Apache License 2.0", "GNU General Public License v3.0", "MIT License", "BSD 2-Clause 'Simplified' License", "BSD 3-Clause 'New' or 'revised' License", "Boost Software License 1.0", "Creative Commons Zero v1.0 Universal", "Eclipse Public License", "GNU Affero General Public License 3.0", "GNU General Public License", "GNU Lesser General Public License", "Mozilla Public License 2.0", "The Unlicense"]
+        message: "What shape would you like the logo to be?",
+        name: 'shape',
+        choices : ["Circle", "Square", "Triangle"]
+      },
+      {
+        type: 'input',
+        message: "What color would you like the shape to be?",
+        name: 'shape_color',
       },
     ])
-    .then()
-
+    .then((result) => {
+      switch (result.shape){
+        case "Circle": var logo = new shapes.Circle(result.text, result.text_color, result.shape_color)
+          break
+        case "Square": var logo = new shapes.Square(result.text, result.text_color, result.shape_color)
+          break
+        case "Triangle": var logo = new shapes.Triangle(result.text, result.text_color, result.shape_color)
+          break
+      }
+      writeLogo("generated_logo.svg", logo.writeSVG())
+    }
+    )
+    
 }
+
+init()
