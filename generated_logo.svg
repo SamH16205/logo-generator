@@ -1,11 +1,9 @@
-<svg version="1.1"
-        width="500" height="500"
-        xmlns="http://www.w3.org/2000/svg">
-   
-     <svg width="400" height="400">
-     <rect width="250" height="250" style="fill:black" />
-   </svg>
-   
-     <text x="125" y="150" font-size="80" text-anchor="middle" fill="red">red</text>
-   
-   </svg>
+ <svg version="1.1"
+            width="500" height="500"
+            xmlns="http://www.w3.org/2000/svg">
+    
+            <circle cx="250" cy="200" r="120" fill="ds" />
+    
+            <text x="250" y="225" font-size="80" text-anchor="middle" fill="s">d</text>
+    
+        </svg>
