@@ -5,7 +5,7 @@ const shapes = require("./lib/shape")
 
 function writeLogo(fileName, data) {
     fs.writeFile(fileName, data, (err)=> 
-    err? console.error(err) : console.log("Success"))
+    err? console.error(err) : console.log("Generated logo.svg."))
   }
 
 function init() {
@@ -42,7 +42,7 @@ function init() {
         case "Triangle": var logo = new shapes.Triangle(result.text, result.text_color, result.shape_color)
           break
       }
-      writeLogo("generated_logo.svg", logo.writeSVG())
+      writeLogo("logo.svg", logo.writeSVG())
     }
     )
     
